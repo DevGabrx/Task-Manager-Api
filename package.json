@@ -1,12 +1,13 @@
 {
   "name": "task-manager-api",
   "version": "1.0.0",
+  "type" : "module",
   "description": "Personal proyect",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/server.js"
   },
   "author": "Gabriel Pino",
   "license": "ISC",

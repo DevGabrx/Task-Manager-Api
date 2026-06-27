@@ -1,15 +1,22 @@
 import express from 'express'
 
 const app = express()
-const puerto = 4030
 
+
+
+//middleware
 app.use(express.json())
 
+//Se quita el x-powered-by por seguridad"
+app.disable('x-powered-by')
+
+
+//Se responde con un json
 app.get('/health',(req,res)=>{
     
-    res.send(`Solicitud de respuesta  = ${res.statusCode}`)
+    res.json({"Status" : "ok"})
+    
 })
 
-app.listen(puerto,()=>{
-    console.log(`Servidor andando!!! en http://localhost:${puerto}}`)
-})
+//Se exporto app para ejecutarse en el fichero server.js
+export default app;
