@@ -1,4 +1,6 @@
 import express from 'express'
+import userRepository from './repositories/userRepository.js';
+
 
 const app = express()
 
@@ -15,7 +17,35 @@ app.disable('x-powered-by')
 app.get('/health',(req,res)=>{
     
     res.json({"Status" : "ok"})
-    
+
+})
+
+
+//this endpoint is working!!! , we use this endpoint for look for user by id
+app.get('/users/:id',async(req,res)=>{
+
+    const users = await userRepository.readJSON()
+    const id = parseInt(req.params.id)
+
+    const user = users.find((user)=>{
+        return user.id === id
+    })
+
+    if(!user){
+        throw new Error("El usuario no existe")
+        
+    }
+
+    res.json(user)
+})
+
+
+//ENDPOINT PARA ELIMINAR 
+app.delete('eliminar/:id',async(req,res)=>{
+    const users = await userRepository.readJSON()
+    const id = parseInt(req.params.id)
+
+    const index = users.findIndex((user) => user.id === id);
 })
 
 //Se exporto app para ejecutarse en el fichero server.js

@@ -15,3 +15,6 @@ cuando hago eso se ejecuta el server.js con la dependencia nodemon
 
 ¿En qué orden se ejecutan import app from './app.js' y el callback de listen?
 
+Investigando descubri que el import es asincrono asi que va cargando mientras lee las lineas de codigo ,es decir , no se detiene.
+
+El app.listen es asincrono se . lo pude ver con un console.log

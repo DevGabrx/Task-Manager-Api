@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Gabriel Pino",
+    "correo": "gabriel.pino@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": 2,
+    "nombre": "Laura Martinez",
+    "correo": "laura.martinez@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos Ruiz",
+    "correo": "carlos.ruiz@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": 4,
+    "nombre": "Sofia Herrera",
+    "correo": "sofia.herrera@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": 5,
+    "nombre": "Andres Morales",
+    "correo": "andres.morales@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": 6,
+    "nombre": "Andres Mora",
+    "correo": "andres.mora@example.com",
+    "isDeleted": false
+  }
+]
