@@ -9,7 +9,7 @@
     "id": 2,
     "nombre": "Laura Martinez",
     "correo": "laura.martinez@example.com",
-    "isDeleted": false
+    "isDeleted": true
   },
   {
     "id": 3,
@@ -33,6 +33,12 @@
     "id": 6,
     "nombre": "Andres Mora",
     "correo": "andres.mora@example.com",
+    "isDeleted": false
+  },
+  {
+    "id": "63e96dbd-056f-4547-ac54-80e8ae122b64",
+    "nombre": "mbappe",
+    "correo": "mbappe@gmail.com",
     "isDeleted": false
   }
 ]

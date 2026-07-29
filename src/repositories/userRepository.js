@@ -9,20 +9,18 @@ const storagePath = path.resolve(__dirname, "../../data/users.json");
 
 
 export class userRepository {
-  constructor(filePath = storagePath) {
-    this.filePath = filePath
-  }
+
+  static filePath = storagePath
 
    static async readJSON() {
     try {
 
-
-      const content = fs.readFile(this.filePath, "utf8")
+      const content = await fs.readFile(this.filePath, "utf8")
       const users = JSON.parse(content)
 
       return users;
 
-    } catch (err) {
+    }catch(error){
 
       // Si el archivo no existe (error ENOENT), lo creamos vacío y retornamos un array vacío
       if (error.code === 'ENOENT') {
@@ -37,7 +35,7 @@ export class userRepository {
   }
 
   static async writeJSON(data) {
-    fs.writeFile(this.filePath, JSON.stringify(data, null, 2), 'utf-8')
+    await fs.writeFile(this.filePath, JSON.stringify(data, null, 2), 'utf-8')
   }
 
   //agregar usuario
@@ -53,7 +51,7 @@ export class userRepository {
   const users = await this.readJSON()
 
   users.push(nuevoUsuario)
-  await this.WriteJSON(users)
+  await this.writeJSON(users)
   return nuevoUsuario
 }
 
@@ -74,7 +72,7 @@ static async logicalDelete(id) {
   users[userIndex].isDeleted = true;
 
   //Escribir nuevamente 
-  await WriteJSON(users)
+  await this.writeJSON(users)
 
   return
 }
@@ -86,6 +84,22 @@ static async getAll() {
 
   return users.filter(user => !user.isDeleted);
 }
+
+static async getByID(id){
+
+  const users = await this.readJSON()
+
+  const userbyID = users.find((user)=>{
+    return user.id===id
+  })
+
+  if(!userbyID){
+    throw new Error("El usuario no existe")
+  }
+
+  return userbyID;
+}
+
 
   
 }

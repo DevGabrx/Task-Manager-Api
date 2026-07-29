@@ -14,25 +14,23 @@ app.disable('x-powered-by')
 
 //Se responde con un json
 app.get("/health", (req, res) => {
-  res.json({ Status: "ok" });
+  res.json({ Status: "ok" , path : userRepository.filePath});
 });
 
 //this endpoint is working!!! , we use this endpoint for look for user by id
 app.get("/users/:id", async (req, res) => {
-  const users = await userRepository.readJSON();
-  
-  const id = parseInt(req.params.id);
 
-  const user = users.find((user) => {
-    return user.id === id;
-  });
+  try{ 
+      const id = parseInt(req.params.id)
 
-  if (!user) {
-    throw new Error("El usuario no existe");
+  const user = await userRepository.getByID(id)
 
+  res.status(200).json({resultado : user})
+
+  }catch(error){
+    res.status(404).json({Mensaje : error.message})
   }
 
-  res.json(user);
 });
 
 //ENDPOINT PARA AGREGAR USUARIO
