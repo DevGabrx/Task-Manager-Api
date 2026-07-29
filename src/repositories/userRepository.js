@@ -100,6 +100,30 @@ static async getByID(id){
   return userbyID;
 }
 
+static async updateUser(id,newData){
+
+  const users = await this.readJSON()
+
+    const index = users.findIndex((user) => {
+    return user.id === id;
+  })
+
+
+  if (index === -1) {
+    throw new Error("Error no se ha encontrado el usuario")
+  }
+
+  users[index] = {
+    ...users[index], // Mantiene campos anteriores (id, isDeleted, etc.)
+    ...newData,
+    id 
+  };
+
+  await this.writeJSON(users)
+
+  return users[index]
+
+}
 
   
 }

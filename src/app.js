@@ -75,5 +75,37 @@ app.get('/users', async (req, res) => {
   res.json({ TodosLosUsuarios: todos })
 })
 
+app.patch('/users/:id', async (req,res)=>{
+
+  try{
+
+    const id = parseInt(req.params.id)
+
+    const newdata = req.body
+
+    const userUpdate = await userRepository.updateUser(id,newdata)
+
+
+    if (!newdata || Object.keys(newdata).length === 0) {
+      return res.status(400).json({ 
+        error: 'Debes proporcionar al menos un campo para actualizar.' 
+      }); // 400 Bad Request
+    }
+
+    if(userUpdate){
+      res.status(200).json({UsuarioActualizado: userUpdate})
+    }
+
+
+  }catch(error){
+    res.status(500).json({mensaje : `Ha ocurrido un problema : ${error.message}`})
+  }
+
+  
+  
+ 
+}
+
+)
 //Se exporto app para ejecutarse en el fichero server.js
 export default app;
